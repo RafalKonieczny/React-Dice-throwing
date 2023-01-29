@@ -11,7 +11,6 @@ function App() {
   const numberOfRolls = (max, inputValue) => {
     let newResult = [];
     let currentResults = [];
-    
     for (let i = 0; i < inputValue; i++) {
       newResult.push({
         dice: `d${max}`,
@@ -56,14 +55,11 @@ function App() {
     }
   };
 
-  console.log("rollResult:", rollResult);
-
   return (
     <div className="App">
-      <div>
-        <h1>Throw the dice</h1>
-      </div>
-      <div>
+      <h1>Dice throwing</h1>
+      <h2>You can't roll like Elvis</h2>
+      <div className="Buttons">
         <button onClick={() => numberOfRolls(4, inputValue)}>d4</button>
         <button onClick={() => numberOfRolls(6, inputValue)}>d6</button>
         <button onClick={() => numberOfRolls(8, inputValue)}>d8</button>
@@ -77,12 +73,12 @@ function App() {
           <div>
             <p>Results of dice sum</p>
             <div>{rollResult.reduce((a, b) => a + b, 0) + bonusPoints}</div>
-            {bonusPoints > 0 && <div>{` BP: ${bonusPoints} `}</div>  }
+            {bonusPoints > 0 && <div>{` BP: ${bonusPoints} `}</div>}
           </div>
         ) : (
           <div>
             <p>Results of dice sum</p>
-            {rollResult.reduce((a, b) => a + b, 0)+ bonusPoints}
+            {rollResult.reduce((a, b) => a + b, 0) + bonusPoints}
             <p>Results of each dice</p>
             <div>{` RR: ${rollResult.join(" + ")} `}</div>
             <div>{` BP: ${bonusPoints} `}</div>
@@ -102,19 +98,19 @@ function App() {
         />
         <button onClick={() => addOneDiceRoll()}>+</button>
       </div>
-          <label id={'Bonus Points'}>Bonus Points</label>
-        <div>
-          <button onClick={() => deductOneBonusPoints()}>-</button>
-          <input
+      <label id={"Bonus Points"}>Bonus Points</label>
+      <div>
+        <button onClick={() => deductOneBonusPoints()}>-</button>
+        <input
           placeholder="Bonus points"
           value={bonusPoints}
           min={1}
           max={10}
           onChange={(e) => e.target.value}
-          id='Bonus Points'
-          />
-          <button onClick={() => addOneBonusPoints()}>+</button>
-        </div>
+          id="Bonus Points"
+        />
+        <button onClick={() => addOneBonusPoints()}>+</button>
+      </div>
       <div>
         History
         {result.map((e) => {
